@@ -26,7 +26,7 @@ def dynamic_knapsack(W, wt, val):
                 # need to use val[row - 1] and wt[row - 1] because of added row of 0s
                 T[row][col] = max(T[row - 1][col], val[row - 1] + T[row - 1][col - (wt[row - 1])])
 
-    return T
+    return T[-1][-1]
 
 
 def main():
@@ -37,14 +37,8 @@ def main():
     val = [int(idx) for idx in l3.split()]
 
     # print(W, wt, val)
-    mine = dynamic_knapsack(W, wt, val)
-    naive = knapsack_01(val, wt, W)
-
-    for row in range(len(mine)):
-        if mine[row] != naive[row]:
-            print('Error')
-        else:
-            print('OK')
+    solution = dynamic_knapsack(W, wt, val)
+    print(solution)
 
 if __name__ == '__main__':
     main()
